@@ -56,7 +56,7 @@ void POP(STACK *stack)
 
     else{
         stack ->array[stack ->top--];
-        printf("%d has been removed from the stack.top position\n",stack->array[stack->top +1]);
+        printf("%d has been removed from the %d position\n",stack->array[stack->top +1], stack->top+1);
 
     }
 }
@@ -86,7 +86,7 @@ int main()
 
     //printing all elements in the stack
     printf("\nBelow are all the elements of the stack\n");
-    for (int i=0; i<n ; i++)
+    for (int i=0; i<=stack->top ; i++)
     {
         printf( "%d \n", stack->array[i]);
     }
