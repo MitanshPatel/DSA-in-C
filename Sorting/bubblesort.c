@@ -18,12 +18,17 @@ int main(){
     }
 
     for(int i=0;i<n-1;i++){ //increment of i helps in removing last element to be compared in next loop. i<n-1 because last element cannot be compared to adjacent
+        int counter=0;
         for(int j=0; j<n-i-1; j++){ //n-i-1 parameter leaves last element after every loop.
             if(arr[j]>arr[j+1]){
                 int temp = arr[j];
                 arr[j]=arr[j+1];
                 arr[j+1]=temp;
+                counter++;
             }
+        }
+        if (counter==0){    //array already sorted.
+            break;
         }
     }
 
