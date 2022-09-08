@@ -23,7 +23,7 @@ Q *createQueue (int n)
 };
 
 void enqueue(Q *queue, int num){
-    if(queue->front==0 && queue->rear==queue->size-1){
+    if((queue->front==0 && queue->rear==queue->size-1) || (queue->rear==queue->front-1)){
         printf("\nQueue is full");
     }
     else if(queue->front==-1 || queue->rear==-1){
@@ -106,19 +106,11 @@ int main(){
     enqueue(queue,72);
     enqueue(queue,87);
     enqueue(queue,23);
-    enqueue(queue,67);
     displayQueue(queue);
     dequeue(queue);
-    dequeue(queue);
-    dequeue(queue);
-    dequeue(queue);
-    dequeue(queue);
-    enqueue(queue,23);
-    enqueue(queue,34);
-    enqueue(queue,66);
-    extractfront(queue);
-    extractrear(queue);
-    dequeue(queue);
-    enqueue(queue,60);
+    enqueue(queue,555);
     displayQueue(queue);
+    enqueue(queue,7777);
+    displayQueue(queue);
+
 }
