@@ -25,22 +25,19 @@ Q *createQueue (int n)
 void enqueue(Q *queue, int num){
     if((queue->front==0 && queue->rear==queue->size-1) || (queue->rear==queue->front-1)){
         printf("\nQueue is full");
+        return;
     }
     else if(queue->front==-1 || queue->rear==-1){
         queue->front=queue->rear=0;
-        queue->array[queue->rear]=num;
-        printf("\n%d is added in the queue",queue->array[queue->rear]);
     }
     else if(queue->rear==queue->size-1 && queue->front!=0){
-        queue->rear=0;
-        queue->array[queue->rear]=num;
-        printf("\n%d is added in the queue",queue->array[queue->rear]);
+        queue->rear=0; 
     }
     else{
-        queue->rear++;
-        queue->array[queue->rear]=num;
-        printf("\n%d is added in the queue",queue->array[queue->rear]);
+        queue->rear++;  
     }
+    queue->array[queue->rear]=num;
+    printf("\n%d is added in the queue",queue->array[queue->rear]);
 }
 
 void dequeue(Q *queue){
