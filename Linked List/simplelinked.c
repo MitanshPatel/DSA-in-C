@@ -37,13 +37,12 @@ Node *addStart(struct Node *head, int num){    //add node at the front
     return head;
 }
 
-void addPos(struct Node* head,int num,int pos){ //add node in between
+void addPos(struct Node* head,int num,int pos){ //add node exactly after the position
     Node *ptr=head;
     Node *newNode=(Node*)malloc(sizeof(Node));
     newNode->data=num;
     newNode->link=NULL;
-    pos--;   // if posn is 3 then ptr will point at 2.
-    while(pos!=0){
+    while(pos!=1){
         ptr=ptr->link;
         pos--;
     }
@@ -142,7 +141,7 @@ int main(){
     addEnd(head,77);
     head=addStart(head,44);
     addEnd(head,55);
-    addPos(head,66,3);
+    addPos(head,66,2);
     addEnd(head,88);
 
     delEnd(head);
