@@ -17,7 +17,7 @@
 
 struct Node{
     int data;
-    struct Node *link;  //pointer pointing to the link element
+    struct Node *right;  //pointer pointing to the right element
 };
 
 typedef struct Node Node;
@@ -25,14 +25,14 @@ typedef struct Node Node;
 void printList(struct Node *n){
     while(n!=NULL){
         printf("%d\n",n->data);
-        n=n->link;
+        n=n->right;
     }
 }
 
 Node *addStart(struct Node *head, int num){    //add node at the front
     Node *newNode=(Node*)malloc(sizeof(Node));
     newNode->data=num; //giving number to the data section
-    newNode->link=head; //putting the value of old head to the link of new node
+    newNode->right=head; //putting the value of old head to the right of new node
     head=newNode; //shifting the head from previous to new head
     return head;
 }
@@ -41,24 +41,24 @@ void addPos(struct Node* head,int num,int pos){ //add node exactly after the pos
     Node *ptr=head;
     Node *newNode=(Node*)malloc(sizeof(Node));
     newNode->data=num;
-    newNode->link=NULL;
-    while(pos!=1){
-        ptr=ptr->link;
+    newNode->right=NULL;
+    while(pos>1){
+        ptr=ptr->right;
         pos--;
     }
-    newNode->link=ptr->link;
-    ptr->link=newNode;
+    newNode->right=ptr->right;
+    ptr->right=newNode;
 }
 
 void addEnd(struct Node *head,int num){  //add node from last
     Node *ptr=head;
     Node *newNode=(Node*)malloc(sizeof(Node));
     newNode->data=num;
-    newNode->link=NULL;
-    while(ptr->link!=NULL){
-        ptr=ptr->link;
+    newNode->right=NULL;
+    while(ptr->right!=NULL){
+        ptr=ptr->right;
     }
-    ptr->link=newNode;
+    ptr->right=newNode;
     
 }
 
@@ -66,18 +66,18 @@ void delEnd(struct Node *head){  //remove from last
     if(head==NULL){
         printf("List empty");
     }
-    else if(head->link==NULL){  //only one node
+    else if(head->right==NULL){  //only one node
         free(head);
         head=NULL;
     }
     else{
         Node *temp=head; 
         Node *temp2=head;
-        while(temp->link!=NULL){
+        while(temp->right!=NULL){
             temp2=temp;
-            temp=temp->link; //aim is to point temp at the last node and temp2 at the second last node.
+            temp=temp->right; //aim is to point temp at the last node and temp2 at the second last node.
         }
-        temp2->link=NULL;
+        temp2->right=NULL;
         free(temp);
         temp=NULL;
     }
@@ -91,17 +91,17 @@ void delPos(struct Node **head, int pos){
         printf("List empty");
     }
     else if(pos==1){
-        *head=current->link;
+        *head=current->right;
         free(current);
         current=NULL;
     }
     else{
         while(pos!=1){
             prev=current;
-            current=current->link;
+            current=current->right;
             pos--;
         }
-        prev->link=current->link;
+        prev->right=current->right;
         free(current);
         current=NULL;
     }
@@ -113,11 +113,24 @@ struct Node *delStart(struct Node *head){
     }
     else{
         Node *temp=head;
-        head=head->link;
+        head=head->right;
         free(temp);
         temp=NULL;
     }
     return head;
+}
+
+void searchdata(struct Node *head, int num){
+    Node *temp;
+    temp=head;
+    while(temp!=NULL){
+        if(temp->data==num){
+            printf("%d is present in linked list\n", temp->data);
+            return;
+        }
+        else temp=temp->right;
+    }
+    printf("%d element not found in linked list\n", num);
 }
 
 int main(){
@@ -130,13 +143,13 @@ int main(){
     third=(Node*)malloc(sizeof(Node));
 
     head->data=11;
-    head->link=second;
+    head->right=second;
     
     second->data=22;
-    second->link=third;
+    second->right=third;
 
     third->data=33;
-    third->link=NULL;
+    third->right=NULL;
 
     addEnd(head,77);
     head=addStart(head,44);
@@ -150,4 +163,7 @@ int main(){
     head=delStart(head);
 
     printList(head);
+
+    searchdata(head,33);
+    searchdata(head,15);
 }
