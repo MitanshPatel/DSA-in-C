@@ -47,8 +47,8 @@ Node *rightRotate(Node *y){  //right rotate subtree rooted with y
     x->right=y;  //perform rotation
     y->left=T2;
 
-    x->height=getHeight(y); //updating the height
-    y->height=getHeight(x);
+    x->height=getHeight(x); //updating the height
+    y->height=getHeight(y);
 
     return x; //new root
 }
