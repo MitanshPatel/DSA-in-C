@@ -59,7 +59,6 @@ void addEnd(struct Node *head,int num){  //add node from last
         ptr=ptr->next;
     }
     ptr->next=newNode;
-    
 }
 
 void delEnd(struct Node *head){  //remove from last
@@ -83,15 +82,15 @@ void delEnd(struct Node *head){  //remove from last
     }
 }
 
-void delPos(struct Node **head, int pos){
-    Node *prev=*head;  //node previous to the node that is to be removed
-    Node *current=*head;  //node to be removed
+void delPos(struct Node *head, int pos){
+    Node *prev=head;  //node previous to the node that is to be removed
+    Node *current=head;  //node to be removed
 
-    if(*head==NULL){
+    if(head==NULL){
         printf("List empty");
     }
     else if(pos==1){
-        *head=current->next;
+        head=current->next;
         free(current);
         current=NULL;
     }
@@ -158,7 +157,7 @@ int main(){
     addEnd(head,88);
 
     delEnd(head);
-    delPos(&head,4);
+    delPos(head,4);
     head=delStart(head);
     head=delStart(head);
 
