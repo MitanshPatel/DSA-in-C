@@ -18,12 +18,17 @@ int main(){
         arr[i]=num;
     }
 
+    int min_idx;
     for(int i=0;i<n-1;i++){  //not to take last posn as it has no more elements ahead in array to compare. smaller number ahead will be swapped to i'th posn
+        min_idx=i;  //min element
         for(int j=i+1;j<n;j++){ //remaining elements that will be swapped to i'th posn
-            if(arr[j]<arr[i]){  //for descending change < to >
-                int temp=arr[i];
-                arr[i]=arr[j];
-                arr[j]=temp;
+            if(arr[j]<arr[min_idx]){  //for descending change < to >
+                min_idx=j;
+                if(min_idx!=i){
+                    int temp=arr[i];
+                    arr[i]=arr[min_idx];
+                    arr[min_idx]=temp;
+                }
             }
         } 
     }
